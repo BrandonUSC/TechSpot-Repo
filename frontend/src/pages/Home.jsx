@@ -179,7 +179,7 @@ const Home = () => {
   // get all products and their available quantities from the backend
   const fetchProducts = async () => {
     try {
-      const res = await fetch('${import.meta.env.VITE_API_URL}/api/products');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
       const data = await res.json();
 
       // For each product, fetch real-time availability accounting for items in carts
