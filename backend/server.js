@@ -21,7 +21,9 @@ const PORT = 4000;
 // Middleware
 
 // Allow requests from the frontend
-app.use(cors());     
+app.use(cors({
+  origin: 'https://tech-spot-repo-frontend.vercel.app'
+}));   
 // Parse incoming JSON request bodies    
 app.use(express.json()); 
 
