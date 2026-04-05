@@ -27,7 +27,7 @@ const Profile = () => {
   useEffect(() => {
     if (!userID) return;
     setOrdersLoading(true);
-    fetch(`http://localhost:4000/api/orders/user/${userID}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/orders/user/${userID}`)
       .then(res => res.json())
       .then(data => setOrders(Array.isArray(data) ? data : []))
       .catch(() => setOrders([]))
@@ -38,7 +38,7 @@ const Profile = () => {
   const handleLogin = async () => {
     setLoginError(null);
     try {
-      const res = await fetch('http://localhost:4000/api/users/login', {
+      const res = await fetch('${import.meta.env.VITE_API_URL}/api/users/login', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginForm)
       });
@@ -56,7 +56,7 @@ const Profile = () => {
   const handleRegister = async () => {
     setRegisterError(null);
     try {
-      const res = await fetch('http://localhost:4000/api/users/register', {
+      const res = await fetch('${import.meta.env.VITE_API_URL}/api/users/register', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(registerForm)
       });
@@ -70,7 +70,7 @@ const Profile = () => {
   // Cancel order API call
   const handleCancelOrder = async (orderID) => {
     try {
-      const res = await fetch(`http://localhost:4000/api/orders/${orderID}/cancel`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${orderID}/cancel`, {
         method: 'PUT', headers: { 'Content-Type': 'application/json' }
       });
       const data = await res.json();

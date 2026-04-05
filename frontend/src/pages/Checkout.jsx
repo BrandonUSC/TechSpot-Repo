@@ -33,7 +33,7 @@ const Checkout = () => {
     }
 
     // Get summary of cart items and cost to then be displayed on the checkout page
-    fetch(`http://localhost:4000/api/checkout/${userID}/summary`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/checkout/${userID}/summary`)
       .then((res) => res.json())
       .then((data) => {
         setSummary(data);
@@ -60,7 +60,7 @@ const Checkout = () => {
 
     // try and catch block to handle errors pertaining to order process
     try {
-      const res = await fetch(`http://localhost:4000/api/checkout/${userID}/purchase`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/checkout/${userID}/purchase`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

@@ -179,14 +179,14 @@ const Home = () => {
   // get all products and their available quantities from the backend
   const fetchProducts = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/products');
+      const res = await fetch('${import.meta.env.VITE_API_URL}/api/products');
       const data = await res.json();
 
       // For each product, fetch real-time availability accounting for items in carts
       const productsWithAvailability = await Promise.all(
         data.map(async (product) => {
           try {
-            const availRes = await fetch(`http://localhost:4000/api/products/${product._id}/available`);
+            const availRes = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${product._id}/available`);
             const availData = await availRes.json();
             return { ...product, availableQuantity: availData.available, totalInCarts: availData.inCarts };
           } catch {
@@ -215,7 +215,7 @@ const Home = () => {
     if (!userID) { setShowLoginPrompt(true); return; }
 
     try {
-      const res = await fetch(`http://localhost:4000/api/cart/${userID}/add`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/${userID}/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productID, quantity: 1 })

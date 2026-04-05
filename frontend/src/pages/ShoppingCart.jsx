@@ -22,7 +22,7 @@ const ShoppingCart = () => {
     }
 
     // fetch cart data from backend
-    fetch(`http://localhost:4000/api/cart/${userID}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/cart/${userID}`)
       .then((res) => res.json())
       .then((data) => {
         setCart(data.products || []); 
@@ -54,7 +54,7 @@ const ShoppingCart = () => {
 
   // Remove an item from the cart
   const removeItem = (productID) => {
-    fetch(`http://localhost:4000/api/cart/${userID}/remove`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/cart/${userID}/remove`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ productID })
