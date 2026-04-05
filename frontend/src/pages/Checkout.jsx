@@ -96,7 +96,7 @@ const Checkout = () => {
           <Link to="/" className="btn btn-danger">
             <i className="bi bi-house me-1"></i> Back to Home
           </Link>
-          // Button below to view orders based on users profile
+          {/* Button below to view orders based on users profile*/}
           <Link to="/profile" className="btn btn-outline-danger">
             <i className="bi bi-clock-history me-1"></i> View Orders
           </Link>
